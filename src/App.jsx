@@ -57,7 +57,8 @@ function App() {
       return `Next player: ${isXTurn ? 'X' : 'O'}`
   }
 
-  function resetGame () {
+  function resetGame () 
+  {
     setBoard(Array(9).fill(null))
     setIsXTurn(true)
   }
