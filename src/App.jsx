@@ -56,40 +56,45 @@ function App() {
     } else {
       return `Next player: ${isXTurn ? 'X' : 'O'}`
   }
-
-  function resetGame () 
-  {
+}
+  function resetGame() {
     setBoard(Array(9).fill(null))
     setIsXTurn(true)
   }
-  }
+
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center
-    justify-center">
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="w-full max-w-[400px] mx-5">
+        <h1 className="text-5xl font-semibold text-white mb-8 text-center">Tic Tac Toe</h1>
 
-      <div className="w-full max-w-[400px} mx-5">
-
-        <h1 className="text-5xl font-semibold text-white mb-8
-        text-center">Tic Tac Toe</h1>
-
-        <div>
-          game status
+        <div className={`text-center mb-6 ${getWinner(board) ? 'text-2xl font-bold text-green-400 animate-bounce' : 'text-xl text-white'}`}>
+          {getGameStatus()}
         </div>
 
-        <div className="grid grid-col-3 gap-1 rounded-xl
-        overflow-hidden mb-6">
-
-          <button className="w-full py-3 text-lg text-white border
-          rounded-xl hover:bg-gray-50 hover:text-gray-800
-          transition-colors duration-200">
-            NEW GAME
+        <div className="grid grid-cols-3 gap-2 ">
+          {board.map((square, index) => (
+            <button
+            key={index}
+            onClick={() => handleSquareClick(index)}
+            className={`h-32 w-full bg-gray-800 rounded-md text-6xl font-light transition-colors duration-200 hover:bg-gray-700 ${
+              square === 'X' ? 'text-blue-400' : 'text-red-400'
+            } border-2 border-gray-700 cursor-pointer`} // Add cursor-pointer here
+          >
+            {square}
           </button>
+          ))}
         </div>
-      </div>
 
+        <button
+          className="w-full py-3 text-lg text-white border rounded-xl hover:bg-gray-50 hover:text-gray-800 transition-colors duration-200 mt-6"
+          onClick={resetGame}
+        >
+          NEW GAME
+        </button>
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
