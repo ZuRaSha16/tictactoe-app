@@ -62,7 +62,7 @@ function App() {
     setBoard(Array(9).fill(null))
     setIsXTurn(true)
   }
-
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 flex items-center
